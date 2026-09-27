@@ -41,7 +41,7 @@ export function PageHero({
               <Eyebrow>{eyebrow}</Eyebrow>
               <CMYKPatches labels={false} />
             </div>
-            <h1 className="mt-8 text-[clamp(2.6rem,1rem+5.4vw,6.25rem)] font-semibold uppercase leading-[0.92] tracking-[-0.05em] text-balance">{title}</h1>
+            <h1 className={`mt-8 font-semibold ${aside ? "text-[clamp(2.4rem,1rem+4.2vw,5rem)]" : "text-[clamp(2.6rem,1rem+5.4vw,6.25rem)]"} uppercase leading-[0.92] tracking-[-0.05em] text-balance`}>{title}</h1>
             {lead && <p className="mt-8 max-w-2xl text-lg leading-relaxed text-smoke md:text-xl">{lead}</p>}
             {children}
           </div>

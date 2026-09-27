@@ -11,7 +11,7 @@ import { PrintArtwork } from "@/components/print/PrintArtwork";
 import { contactLinks } from "@/config/site";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
-import { ArrowLeft, ArrowRight } from "@/components/ui/Icons";
+import { ArrowLeft } from "@/components/ui/Icons";
 import { Button } from "@/components/ui/Button";
 import { CheckGroup, ChoiceGroup, Chips, StepHeader, TextField, FieldError } from "./fields";
 import { FileUpload } from "./FileUpload";
@@ -421,9 +421,8 @@ export function QuoteWizard({ initialProduct, logo }: { initialProduct?: string;
             {step < total - 1 ? (
               <Button type="submit" size="lg" arrow>Continue</Button>
             ) : (
-              <Button type="submit" size="lg" disabled={submitting} aria-busy={submitting}>
+              <Button type="submit" size="lg" arrow={!submitting} disabled={submitting} aria-busy={submitting}>
                 {submitting ? "Sending…" : "Request quote"}
-                {!submitting && <ArrowRight size={16} className="relative z-10" />}
               </Button>
             )}
           </div>

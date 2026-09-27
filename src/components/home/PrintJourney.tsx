@@ -42,7 +42,7 @@ export function PrintJourney() {
     <section ref={ref} data-nav="dark" className="relative bg-ink text-paper" style={{ height: `${n * 75}svh` }} aria-labelledby="journey-title">
       <div className="sticky top-0 flex h-svh flex-col overflow-hidden">
         <div className="grid-lines pointer-events-none absolute inset-0 [--grid-color:rgba(255,255,255,0.035)] [--grid-size:56px]" aria-hidden />
-        <div className="container-gi relative grid flex-1 grid-rows-[auto_1fr_auto] gap-5 pb-6 pt-20 md:pt-24 lg:grid-cols-12 lg:grid-rows-1 lg:items-center lg:gap-10 lg:py-0">
+        <div className="container-gi relative grid flex-1 grid-rows-[auto_1fr_auto] gap-5 pb-24 pt-20 md:pb-6 md:pt-24 lg:grid-cols-12 lg:grid-rows-1 lg:items-center lg:gap-10 lg:py-0">
           {/* Left: heading + stages */}
           <div className="lg:col-span-5">
             <Eyebrow index="02" tone="light">The GraphInk workflow</Eyebrow>

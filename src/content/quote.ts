@@ -1,13 +1,14 @@
 import { availableProducts } from "./services";
 
+/** Order follows the brief. Items marked unavailable in services.ts are dropped automatically. */
+const QUOTE_ORDER = [
+  "business-cards", "flyers", "brochures", "folders", "booklets", "magazines", "catalogs", "posters",
+  "menus", "labels", "stickers", "packaging", "certificates", "school-materials", "corporate-materials",
+];
+
 export const quoteProductOptions = [
-  ...availableProducts
-    .filter((p) =>
-      [
-        "business-cards", "flyers", "brochures", "folders", "booklets", "magazines", "catalogs", "posters",
-        "menus", "labels", "stickers", "packaging", "certificates", "school-materials", "corporate-materials",
-      ].includes(p.id),
-    )
+  ...QUOTE_ORDER.map((id) => availableProducts.find((p) => p.id === id))
+    .filter((p): p is NonNullable<typeof p> => !!p)
     .map((p) => ({ id: p.id, label: p.name, art: p.art })),
   { id: "other", label: "Other", art: "custom" as const },
 ];

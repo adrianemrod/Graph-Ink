@@ -26,7 +26,7 @@ type Common = { variant?: Variant; size?: Size; arrow?: boolean; className?: str
  */
 export function buttonClasses({ variant = "primary", size = "md", className }: { variant?: Variant; size?: Size; className?: string }) {
   return cn(
-    "group/btn relative isolate inline-flex select-none items-center justify-center gap-3 overflow-hidden rounded-xs font-semibold uppercase tracking-[0.08em] transition-[background-color,color,border-color,transform] duration-300 ease-[var(--ease-press)] active:scale-[0.98] disabled:opacity-50",
+    "group/btn relative isolate inline-flex select-none whitespace-nowrap items-center justify-center gap-3 overflow-hidden rounded-xs font-semibold uppercase tracking-[0.08em] transition-[background-color,color,border-color,transform] duration-300 ease-[var(--ease-press)] active:scale-[0.98] disabled:opacity-50",
     variants[variant],
     sizes[size],
     className,
