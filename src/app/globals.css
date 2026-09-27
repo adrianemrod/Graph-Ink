@@ -1,0 +1,227 @@
+@import "tailwindcss";
+
+/* ============================================================
+   GRAPHINK MEDIA — design tokens
+   70–80% paper & ink neutrals · 15–20% neutral surfaces · 5–10% spectrum
+   ============================================================ */
+
+@theme {
+  /* Neutrals */
+  --color-ink: #111111;
+  --color-charcoal: #181818;
+  --color-graphite: #2a2a28;
+  --color-smoke: #6b6b66;
+  --color-mute: #8f8f89;
+  --color-line: #e4e3df;
+  --color-line-dark: #2e2e2c;
+  --color-paper: #ffffff;
+  --color-paper-soft: #f7f7f5;
+  --color-paper-warm: #efede8;
+
+  /* GraphInk spectrum (working approximations — the logo is the source of truth) */
+  --color-gi-cyan: #0898d8;
+  --color-gi-blue: #085888;
+  --color-gi-magenta: #e80888;
+  --color-gi-pink: #a81868;
+  --color-gi-yellow: #f8e808;
+  --color-gi-orange: #e87818;
+  --color-gi-green: #089848;
+  --color-gi-purple: #582888;
+
+  /* Process inks for print visuals */
+  --color-process-c: #00a3e0;
+  --color-process-m: #e5007e;
+  --color-process-y: #ffe500;
+  --color-process-k: #1a1a1a;
+
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+
+  --ease-press: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-sheet: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --text-display: clamp(2.75rem, 1.2rem + 6.4vw, 7.5rem);
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.045em;
+  --text-headline: clamp(2.1rem, 1.2rem + 3.6vw, 4.75rem);
+  --text-headline--line-height: 0.98;
+  --text-headline--letter-spacing: -0.04em;
+  --text-title: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
+  --text-title--line-height: 1.05;
+  --text-title--letter-spacing: -0.03em;
+
+  --animate-spectrum: spectrum-shift 14s linear infinite;
+}
+
+@keyframes spectrum-shift {
+  from { background-position: 0 0; }
+  to { background-position: 200% 0; }
+}
+
+:root {
+  --spectrum: linear-gradient(
+    90deg,
+    var(--color-gi-cyan) 0 14.28%,
+    var(--color-gi-blue) 14.28% 28.56%,
+    var(--color-gi-purple) 28.56% 42.84%,
+    var(--color-gi-magenta) 42.84% 57.12%,
+    var(--color-gi-orange) 57.12% 71.4%,
+    var(--color-gi-yellow) 71.4% 85.68%,
+    var(--color-gi-green) 85.68% 100%
+  );
+  --spectrum-soft: linear-gradient(
+    90deg,
+    var(--color-gi-cyan),
+    var(--color-gi-purple),
+    var(--color-gi-magenta),
+    var(--color-gi-orange),
+    var(--color-gi-yellow),
+    var(--color-gi-green),
+    var(--color-gi-cyan)
+  );
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 88px;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+  body {
+    background: var(--color-paper-soft);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: var(--color-gi-magenta);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-gi-cyan);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  button, [role="button"] { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+}
+
+@layer components {
+  .container-gi {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 0.4rem + 2.6vw, 3rem);
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .spec {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .hairline { border-color: var(--color-line); }
+  .spectrum-bar {
+    background-image: var(--spectrum);
+  }
+  .spectrum-flow {
+    background-image: var(--spectrum-soft);
+    background-size: 200% 100%;
+    animation: var(--animate-spectrum);
+  }
+  /* Underline that draws from left on hover */
+  .link-draw {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.35s var(--ease-press);
+  }
+  .link-draw:hover, .link-draw:focus-visible { background-size: 100% 1px; }
+
+  /* Paper grain — tiny inline SVG noise, used on printed surfaces */
+  .paper-grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .halftone {
+    background-image: radial-gradient(currentColor 0.9px, transparent 1.1px);
+    background-size: 7px 7px;
+  }
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, var(--grid-color, rgba(17, 17, 17, 0.06)) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-color, rgba(17, 17, 17, 0.06)) 1px, transparent 1px);
+    background-size: var(--grid-size, 48px) var(--grid-size, 48px);
+  }
+}
+
+/* ============================================================
+   Loader — pure CSS so it never blocks content if JS is slow.
+   Total run ≈ 0.95s. Skipped on repeat visits within a session.
+   ============================================================ */
+.gi-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--color-paper-soft);
+  animation: gi-loader-out 0.3s var(--ease-sheet) 0.72s forwards;
+  pointer-events: none;
+}
+.gi-loader__plate {
+  animation: gi-plate-in 0.5s var(--ease-press) both;
+}
+.gi-loader__mark { animation: gi-fade 0.3s ease-out both; }
+.gi-loader__brand { animation: gi-fade 0.25s ease-out 0.42s both; }
+@keyframes gi-plate-in {
+  from { transform: translate(var(--dx, 0), var(--dy, 0)); opacity: 0; }
+  60% { opacity: 1; }
+  to { transform: translate(0, 0); opacity: 1; }
+}
+@keyframes gi-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes gi-loader-out {
+  to { opacity: 0; visibility: hidden; }
+}
+html.gi-seen .gi-loader { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gi-loader { display: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   Hero entrance — CSS-driven so the headline paints without waiting
+   for JavaScript. On a first visit it waits for the loader to clear.
+   ============================================================ */
+@keyframes gi-rise { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes gi-fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes gi-reg {
+  from { transform: translate(var(--rx), var(--ry)); opacity: 1; }
+  65% { opacity: 1; }
+  to { transform: none; opacity: 0; }
+}
+.gi-rise { animation: gi-rise 0.9s var(--ease-press) both; animation-delay: var(--d, 0s); }
+.gi-fade-up { animation: gi-fade-up 0.7s var(--ease-press) both; animation-delay: var(--d, 0s); }
+.gi-reg { animation: gi-reg 1.25s var(--ease-press) both; animation-delay: var(--d, 0s); }
+html:not(.gi-seen) :is(.gi-rise, .gi-fade-up, .gi-reg) { animation-delay: calc(var(--d, 0s) + 0.7s); }

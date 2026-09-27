@@ -1,0 +1,20 @@
+type P = { className?: string; size?: number };
+const base = (size = 16) => ({ width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "square" as const, "aria-hidden": true });
+
+export const ArrowRight = ({ className, size }: P) => (<svg {...base(size)} className={className}><path d="M4 12h15M13 6l6 6-6 6" /></svg>);
+export const ArrowUpRight = ({ className, size }: P) => (<svg {...base(size)} className={className}><path d="M7 17 17 7M8 7h9v9" /></svg>);
+export const ArrowLeft = ({ className, size }: P) => (<svg {...base(size)} className={className}><path d="M20 12H5M11 6l-6 6 6 6" /></svg>);
+export const Plus = ({ className, size }: P) => (<svg {...base(size)} className={className}><path d="M12 5v14M5 12h14" /></svg>);
+export const Minus = ({ className, size }: P) => (<svg {...base(size)} className={className}><path d="M5 12h14" /></svg>);
+export const Close = ({ className, size }: P) => (<svg {...base(size)} className={className}><path d="M6 6l12 12M18 6 6 18" /></svg>);
+export const Check = ({ className, size }: P) => (<svg {...base(size)} className={className}><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>);
+export const Upload = ({ className, size }: P) => (<svg {...base(size)} className={className}><path d="M12 16V4M7 9l5-5 5 5M4 15v5h16v-5" /></svg>);
+export const FileIcon = ({ className, size }: P) => (<svg {...base(size)} className={className}><path d="M6 3h8l4 4v14H6zM14 3v4h4" /></svg>);
+export const Phone = ({ className, size }: P) => (<svg {...base(size)} className={className}><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z" /></svg>);
+export const Mail = ({ className, size }: P) => (<svg {...base(size)} className={className}><path d="M3 5h18v14H3zM3 6l9 7 9-7" /></svg>);
+export const Chat = ({ className, size }: P) => (<svg {...base(size)} className={className}><path d="M4 5h16v11H9l-5 4z" /></svg>);
+export const Pin = ({ className, size }: P) => (<svg {...base(size)} className={className}><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12Z" /><circle cx="12" cy="9" r="2.5" /></svg>);
+export const Clock = ({ className, size }: P) => (<svg {...base(size)} className={className}><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>);
+export const Facebook = ({ className, size = 16 }: P) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}><path d="M13.5 21v-7.5H16l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8.1v3h2.5V21h2.9Z" /></svg>);
+export const Messenger = ({ className, size = 16 }: P) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}><path d="M12 2.5C6.5 2.5 2.3 6.5 2.3 11.8c0 2.8 1.1 5.2 3 6.9v3.3l3-1.7c1.1.3 2.3.5 3.7.5 5.5 0 9.7-4 9.7-9.3S17.5 2.5 12 2.5Zm1 12.4-2.5-2.6-4.8 2.6 5.3-5.6 2.5 2.6 4.8-2.6-5.3 5.6Z" /></svg>);
+export const Menu = ({ className, size }: P) => (<svg {...base(size)} className={className}><path d="M3 8h18M3 16h18" /></svg>);
